@@ -1,0 +1,28 @@
+import("//cobalt/build/modular_executable.gni")
+
+if (is_cobalt_hermetic_build) {
+  cobalt_target_type = "modular_executable"
+} else {
+  cobalt_target_type = "executable"
+}
+
+target(cobalt_target_type, "updater_sandbox") {
+  testonly = true
+  sources = [ "updater_sandbox.cc" ]
+
+  configs += [ "//build/config/gcc:rpath_for_built_shared_libraries" ]
+
+  deps = [
+    "//chrome/updater:base",
+    "//chrome/updater:constants_prod",
+    "//starboard:starboard_headers_only",
+    "//starboard/common:common_headers_only",
+  ]
+
+  if (is_cobalt_hermetic_build) {
+    # Needed for third_party/musl/src/starboard/internal/hwcap_impl.h
+    deps += [ "//third_party/musl:headers" ]
+  }
+
+  public_configs = [ "//chrome/updater/linux:libsystemd" ]
+}

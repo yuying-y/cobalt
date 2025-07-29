@@ -39,6 +39,9 @@ group("gn_all") {
       "//starboard/loader_app:loader_app($starboard_toolchain)",
     ]
   }
+  if (is_starboard) {
+    deps += [ "//chrome/updater/cobalt:updater_sandbox" ]
+  }
 }
 
 group("cobalt_browsertests") {
