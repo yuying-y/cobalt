@@ -97,6 +97,8 @@ static_library("update_client") {
     "action_runner.cc",
     "action_runner.h",
     "activity_data_service.h",
+    "cobalt_slot_management.cc",
+    "cobalt_slot_management.h",
     "command_line_config_policy.cc",
     "command_line_config_policy.h",
     "component.cc",
@@ -173,6 +175,9 @@ static_library("update_client") {
     "//courgette:courgette_lib",
     "//crypto",
     "//third_party/zlib/google:compression_utils",
+    "//starboard:starboard_headers_only",
+    "//starboard/loader_app:app_key_files",
+    "//starboard/loader_app:drain_file",
     "//url",
   ]
 

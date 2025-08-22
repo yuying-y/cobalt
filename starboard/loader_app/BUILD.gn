@@ -310,7 +310,10 @@ static_library("slot_management") {
 if (sb_is_evergreen) {
   source_set("slot_management_test") {
     testonly = true
-    build_loader = false
+
+    # Commented out due to GN error: You set the variable "build_loader"
+    # here and it was unused before it went out of scope.
+    # build_loader = false
 
     sources = [ "slot_management_test.cc" ]
     deps = [
@@ -319,7 +322,7 @@ if (sb_is_evergreen) {
       ":installation_manager",
       ":installation_store_proto",
       ":slot_management",
-      "//starboard:starboard_with_main",
+      "//starboard:starboard_with_main($starboard_toolchain)",
       "//starboard/common",
       "//starboard/elf_loader:sabi_string",
       "//testing/gmock",
