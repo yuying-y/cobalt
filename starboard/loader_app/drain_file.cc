@@ -187,6 +187,9 @@ bool TryDrain(const char* dir, const char* app_key) {
   SB_DCHECK_GE(file, 0);
   SB_DCHECK_EQ(close(file), 0);
 
+  // Silence the -wunused-variable warning for non-debug builds.
+  static_cast<void>(file);
+
   SB_LOG(INFO) << "Created drain file at '" << path << "'";
 
   return true;
